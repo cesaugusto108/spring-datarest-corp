@@ -18,10 +18,17 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
 
     @Query(
             "from Employee e where " +
+                    "name.firstName like concat('%', :name, '%') or " +
+                    "name.lastName like concat('%', :name, '%') order by name.firstName asc"
+    )
+    Page<Employee> findEmployeeByName(@Param("name") String name, Pageable pageable);
+
+    @Query(
+            "from Employee e where " +
                     "description like concat('%', :search, '%') or " +
                     "registration like concat('%', :search, '%') or " +
                     "name.firstName like concat('%', :search, '%') or " +
-                    "name.lastName like concat('%', :search, '%') order by name.firstName asc "
+                    "name.lastName like concat('%', :search, '%') order by name.firstName asc"
     )
     Page<Employee> findEmployees(@Param("search") String search, Pageable pageable);
 }
