@@ -18,4 +18,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public List<Employee> findEmployeeByRegistration(String registration) {
         return repository.findEmployeeByRegistration(registration);
     }
+
+    @Override
+    public List<Employee> findEmployeeByDescription(String description) {
+        return repository.findEmployeeByDescription(description);
+    }
 }

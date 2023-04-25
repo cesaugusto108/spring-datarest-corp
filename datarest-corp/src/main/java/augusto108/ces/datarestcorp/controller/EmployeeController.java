@@ -16,8 +16,13 @@ class EmployeeController {
         this.service = service;
     }
 
-    @GetMapping("/search")
+    @GetMapping("/registration/search")
     public List<Employee> findEmployeeByRegistration(@RequestParam(defaultValue = "") String registration) {
         return service.findEmployeeByRegistration(registration);
+    }
+
+    @GetMapping("/description/search")
+    public List<Employee> findEmployeeByDescription(@RequestParam(defaultValue = "") String description) {
+        return service.findEmployeeByDescription(description);
     }
 }

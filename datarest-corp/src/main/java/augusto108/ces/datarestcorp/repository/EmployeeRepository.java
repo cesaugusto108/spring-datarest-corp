@@ -12,4 +12,7 @@ import java.util.List;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("from Employee e where registration like concat('%', :registration, '%')")
     List<Employee> findEmployeeByRegistration(@Param("registration") String registration);
+
+    @Query("from Employee e where description like concat('%', :description, '%')")
+    List<Employee> findEmployeeByDescription(@Param("description") String description);
 }
