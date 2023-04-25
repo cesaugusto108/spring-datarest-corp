@@ -8,4 +8,6 @@ public interface EmployeeService {
     List<Employee> findEmployeeByRegistration(String registration);
 
     List<Employee> findEmployeeByDescription(String description);
+
+    List<Employee> findEmployees(String search);
 }
