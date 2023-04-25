@@ -29,9 +29,9 @@ public class EmployeeRepresentationModelAssembler implements RepresentationModel
             employeeEntityModels.add(toModel(entity));
         }
 
-        final Link search = linkTo(methodOn(EmployeeController.class).findEmployees("")).withRel("search");
-        final Link registration = linkTo(methodOn(EmployeeController.class).findEmployeeByRegistration("")).withRel("search by registration");
-        final Link description = linkTo(methodOn(EmployeeController.class).findEmployeeByDescription("")).withRel("search by description");
+        final Link search = linkTo(methodOn(EmployeeController.class).findEmployees("", 0, 5)).withRel("search");
+        final Link registration = linkTo(methodOn(EmployeeController.class).findEmployeeByRegistration("", 0, 5)).withRel("search by registration");
+        final Link description = linkTo(methodOn(EmployeeController.class).findEmployeeByDescription("", 0, 5)).withRel("search by description");
 
         return CollectionModel.of(employeeEntityModels, search, registration, description);
     }

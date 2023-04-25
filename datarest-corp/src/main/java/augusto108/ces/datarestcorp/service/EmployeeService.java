@@ -1,13 +1,12 @@
 package augusto108.ces.datarestcorp.service;
 
 import augusto108.ces.datarestcorp.model.Employee;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
 
 public interface EmployeeService {
-    List<Employee> findEmployeeByRegistration(String registration);
+    Page<Employee> findEmployeeByRegistration(String registration, int page, int size);
 
-    List<Employee> findEmployeeByDescription(String description);
+    Page<Employee> findEmployeeByDescription(String description, int page, int size);
 
-    List<Employee> findEmployees(String search);
+    Page<Employee> findEmployees(String search, int page, int size);
 }

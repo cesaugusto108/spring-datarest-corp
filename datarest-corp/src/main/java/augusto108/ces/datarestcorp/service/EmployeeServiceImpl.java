@@ -2,30 +2,28 @@ package augusto108.ces.datarestcorp.service;
 
 import augusto108.ces.datarestcorp.model.Employee;
 import augusto108.ces.datarestcorp.repository.EmployeeRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
+@RequiredArgsConstructor
 public class EmployeeServiceImpl implements EmployeeService {
     private final EmployeeRepository repository;
 
-    public EmployeeServiceImpl(EmployeeRepository repository) {
-        this.repository = repository;
+    @Override
+    public Page<Employee> findEmployeeByRegistration(String registration, int page, int size) {
+        return repository.findEmployeeByRegistration(registration, PageRequest.of(page, size));
     }
 
     @Override
-    public List<Employee> findEmployeeByRegistration(String registration) {
-        return repository.findEmployeeByRegistration(registration);
+    public Page<Employee> findEmployeeByDescription(String description, int page, int size) {
+        return repository.findEmployeeByDescription(description, PageRequest.of(page, size));
     }
 
     @Override
-    public List<Employee> findEmployeeByDescription(String description) {
-        return repository.findEmployeeByDescription(description);
-    }
-
-    @Override
-    public List<Employee> findEmployees(String search) {
-        return repository.findEmployees(search);
+    public Page<Employee> findEmployees(String search, int page, int size) {
+        return repository.findEmployees(search, PageRequest.of(page, size));
     }
 }
