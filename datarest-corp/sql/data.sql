@@ -1,7 +1,7 @@
-insert into `users` values ('martins', '{noop}test', 1);
-insert into `users` values ('araujo', '{noop}test', 1);
-insert into `users` values ('batista', '{noop}test', 1);
-insert into `users` values ('fernandes', '{noop}test', 1);
+insert into `users` values ('martins', '{bcrypt}$2a$10$vo6g5rGJlLXfyaaDDbYrOO5iUPEl053FePDiNSNh6MnkPSyE2fWOa', 1);
+insert into `users` values ('araujo', '{bcrypt}$2a$10$vo6g5rGJlLXfyaaDDbYrOO5iUPEl053FePDiNSNh6MnkPSyE2fWOa', 1);
+insert into `users` values ('batista', '{bcrypt}$2a$10$vo6g5rGJlLXfyaaDDbYrOO5iUPEl053FePDiNSNh6MnkPSyE2fWOa', 1);
+insert into `users` values ('fernandes', '{bcrypt}$2a$10$vo6g5rGJlLXfyaaDDbYrOO5iUPEl053FePDiNSNh6MnkPSyE2fWOa', 1);
 
 insert into `authorities` values ('martins', 'ROLE_EMPLOYEE');
 insert into `authorities` values ('araujo', 'ROLE_MANAGER');

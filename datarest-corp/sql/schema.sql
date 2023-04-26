@@ -1,9 +1,9 @@
-DROP TABLE IF EXISTS `users`;
 DROP TABLE IF EXISTS `authorities`;
+DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
 	`username` varchar(50) PRIMARY KEY NOT NULL UNIQUE,
-	`password` varchar(50) NOT NULL,
+	`password` char(68) NOT NULL,
 	`enabled` tinyint NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
