@@ -24,7 +24,12 @@ public class ApplicationSecurityConfiguration {
 
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
-        return new JdbcUserDetailsManager(dataSource);
+        JdbcUserDetailsManager detailsManager = new JdbcUserDetailsManager(dataSource);
+
+        detailsManager.setUsersByUsernameQuery("select employee, pword, active from personnel where employee = ?");
+        detailsManager.setAuthoritiesByUsernameQuery("select employee, role from roles where employee = ?");
+
+        return detailsManager;
     }
 
     @Bean
