@@ -1,20 +1,17 @@
 package augusto108.ces.datarestcorp.security;
 
-import lombok.RequiredArgsConstructor;
+import augusto108.ces.datarestcorp.service.HREmployeeService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.provisioning.JdbcUserDetailsManager;
-import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import javax.sql.DataSource;
-
 @Configuration
-@RequiredArgsConstructor
 @PropertySource("classpath:users.properties")
 public class ApplicationSecurityConfiguration {
     private @Value("${user.role1}") String employee;
@@ -23,13 +20,18 @@ public class ApplicationSecurityConfiguration {
     private @Value("${user.role4}") String trainee;
 
     @Bean
-    public UserDetailsManager userDetailsManager(DataSource dataSource) {
-        JdbcUserDetailsManager detailsManager = new JdbcUserDetailsManager(dataSource);
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
-        detailsManager.setUsersByUsernameQuery("select employee, pword, active from personnel where employee = ?");
-        detailsManager.setAuthoritiesByUsernameQuery("select employee, role from roles where employee = ?");
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(HREmployeeService hrEmployeeService) {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
 
-        return detailsManager;
+        authenticationProvider.setUserDetailsService(hrEmployeeService);
+        authenticationProvider.setPasswordEncoder(passwordEncoder());
+
+        return authenticationProvider;
     }
 
     @Bean

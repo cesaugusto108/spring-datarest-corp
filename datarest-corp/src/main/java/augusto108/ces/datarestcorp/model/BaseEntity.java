@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @EqualsAndHashCode(of = "id")
 @MappedSuperclass
-public abstract sealed class BaseEntity permits Person {
+public abstract sealed class BaseEntity permits Authority, HREmployee, Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true)
